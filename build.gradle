@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    implementation 'org.projectlombok:lombok:1.18.20'
+    implementation('mysql:mysql-connector-java:5.+')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task firstTask {
+    doLast {
+        println('First Task Complited')
+    }
+}
+
+task secondTask(dependsOn: firstTask) {
+    doLast {
+        println('Second Task Complited')
+    }
+}
+
+task thirdTask(dependsOn: secondTask) {
+    doLast{
+        println('Third Task Complited')
+    }
+}
